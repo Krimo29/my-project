@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PaiementController!{% endblock %}
+
+{% block stylesheets %}
+    <script type="text/javascript"  src="https://js.stripe.com/v3/"></script>
+    <script src="/js/stripe/checkout.js" defer></script>
+{% endblock %}
+
+{% block body %}
+    <h1>Paiement exemple stripe</h1>
+
+    <p>Produit 1</p>
+    <p>Description</p>
+
+    <p><span id="prix">1000</span>€</p>
+
+    <div id="paiement">
+        <!-- Display a payment form -->
+        <form id="payment-form">
+            <div id="link-authentication-element">
+            <!--Stripe.js injects the Link Authentication Element-->
+            </div>
+            <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+            </div>
+            <button id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Payer</span>
+            </button>
+            <div id="payment-message" class="hidden"></div>
+        </form>
+    </div>
+{% endblock %}

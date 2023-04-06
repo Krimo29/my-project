@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .card {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenue sur notre site</h1>
+        <p class="lead">Découvrez nos produits et articles exclusifs</p>
+    </div>
+    <div class="jumbotron text-center">
+        <h1 class="display-">La Sonotherapie</h1>
+        <p class="lead">La vibration est à la base de tout, de la plus petite molécule à l'Univers entier. C'est à travers ces vibrations que nous pouvons rétablir l'harmonie dans notre corps et notre vie grâce à la thérapie par le son. La sonothérapie utilise les fréquences vibratoires des éléments pour rétablir les fréquences harmonieuses de chaque organe, cellule, os, tissu, liquide et champ électromagnétique entourant notre corps. Si vous vous sentez stressé, fatigué ou malade, la sonothérapie peut vous aider à retrouver l'équilibre et la santé en rétablissant les vibrations saines dans votre corps. N'hésitez pas à explorer les bienfaits de la sonothérapie pour votre bien-être global.</p>
+    </div>
+
+
+    <section class="container">
+        <h2 class="text-center text-uppercase">Produits</h2>
+        <div class="row">
+
+            {% for produit in produits %}
+<div class="1">
+<div class="2" style="max-width: 20rem;">
+<img src="https://arcanum.paris/uploads/produit/8/visite-paris-medieval-visiter-paris-moyen-age-arcanum-000.jpg" class="card-img-top" alt="...">
+<div class="card-body">
+<h5 class="card-title text-center font-weight-bold" style="font-family: 'Roboto', sans-serif;">{{ produit.title|upper }}</h5>
+<p class="card-text text-center" style="font-family: 'Open Sans', sans-serif;">{{ produit.description }}</p>
+<p class="card-text text-center font-weight-bold" style="font-family: 'Montserrat', sans-serif;">{{ produit.prix }}€</p>
+<p class="text-center">
+<a href="{{ path('app_produits_show', {'id': produit.id }) }}" class="btn btn-primary btn-sm font-weight-bold" role="button" style="font-family: 'Roboto', sans-serif;">
+Voir plus
+</a>
+</p>
+</div>
+</div>
+</div>
+{% endfor %}
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h2 class="text-center text-uppercase">Articles</h2>
+        <div class="row">
+
+            {% for article in articles %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card mb-4 mx-auto" style="max-width: 20rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ article.title|upper }}</h5>
+                            <p class="card-text text-center">{{ article.contenu }}</p>
+                            <p class="card-text text-center">{{ article.auteur }}</p>  
+                            <p class="text-center">
+                                <a href="{{ path('app_articles_show', {'id': article.id }) }}" class="btn btn-primary btn-sm" role="button">
+                                    Voir plus
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <h2 class="text-center text-uppercase">Auteurs</h2>
+    <div class="row">
+
+        {% for auteur in auteurs %}
+            <div class="col-lg-4 col-12">
+                <div class="card m-4">
+                    <div class="card-boy">
+                        <h5 class="card-title text-center">{{ auteur.nom|upper }} {{ auteur.prenom|upper }}</h5>
+                        <p class="card-text text-center">{{ auteur.email }}</p>
+                        <p class="card-text text-center">{{ auteur.adresse }}</p>  
+                        <p class="text-center"><a href="{{ path('app_auteur_show', {'id': auteur.id }) }}" > Voir plus</a></p>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+    <h2 class="text-center text-uppercase">Catégorie</h2>
+    <div class="row">
+
+        {% for categorie in categories %}
+            <div class="col-lg-4 col-12">
+                <div class="card m-4">
+                    <div class="card-boy">
+                        <h5 class="card-title text-center">{{ categorie.titre|upper }}</h5>
+                        <p class="card-text text-center">{{ categorie.description }}</p>
+                        <p class="text-center"><a href="{{ path('app_categorie_show', {'id': categorie.id }) }}" > Voir plus</a></p>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+{% endblock %}
